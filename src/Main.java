@@ -56,6 +56,7 @@ public class Main extends javax.swing.JFrame {
         select_dropdown = new javax.swing.JComboBox<>();
         reg_button = new javax.swing.JButton();
         reg_dropdown_label = new javax.swing.JLabel();
+        reg_heading_label = new javax.swing.JLabel();
         student_info_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         result_display_panel = new javax.swing.JPanel();
@@ -72,8 +73,9 @@ public class Main extends javax.swing.JFrame {
         selection_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         selection_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        welcome_label.setText("WELCOME TO THE SAMPLE APP");
-        selection_panel.add(welcome_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        welcome_label.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        welcome_label.setText("ID CARD GENERATOR");
+        selection_panel.add(welcome_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
         select_button.setText("SELECT CSV FILE");
         select_button.addActionListener(new java.awt.event.ActionListener() {
@@ -87,8 +89,8 @@ public class Main extends javax.swing.JFrame {
         header_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         file_name_label.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        file_name_label.setText("File Name");
-        header_panel.add(file_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+        file_name_label.setText("WELCOME TO ID CARD GENERATOR");
+        header_panel.add(file_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 4, -1, 30));
 
         main_table_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -106,7 +108,7 @@ public class Main extends javax.swing.JFrame {
     main_table.getTableHeader().setReorderingAllowed(false);
     main_table_scroll_panel.setViewportView(main_table);
 
-    main_table_panel.add(main_table_scroll_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 430));
+    main_table_panel.add(main_table_scroll_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 430));
 
     reg_selection_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
     reg_selection_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,17 +130,22 @@ public class Main extends javax.swing.JFrame {
     reg_selection_panel.add(select_dropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 162, -1));
 
     reg_button.setVisible(false);
-    reg_button.setText("Click here");
+    reg_button.setText("CONFIRM");
     reg_button.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             reg_buttonActionPerformed(evt);
         }
     });
-    reg_selection_panel.add(reg_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 169, -1, -1));
+    reg_selection_panel.add(reg_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
     reg_dropdown_label.setVisible(false);
-    reg_dropdown_label.setText("Identification no :");
-    reg_selection_panel.add(reg_dropdown_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+    reg_dropdown_label.setText("Register no :");
+    reg_selection_panel.add(reg_dropdown_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 30));
+
+    reg_heading_label.setVisible(false);
+    reg_heading_label.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+    reg_heading_label.setText("SELECT  STUDENT");
+    reg_selection_panel.add(reg_heading_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
     student_info_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -190,10 +197,9 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(student_info_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(result_display_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(main_table_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 1279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 1277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 9, Short.MAX_VALUE)))
+                            .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 8, Short.MAX_VALUE))
+                        .addComponent(main_table_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
                 .addComponent(submit_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
@@ -260,6 +266,7 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                                    }
             reg_dropdown_label.setVisible(true);
+            reg_heading_label.setVisible(true);
             reg_textfield.setVisible(true);
             select_dropdown.setVisible(true);
             reg_button.setVisible(true);
@@ -371,6 +378,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane main_table_scroll_panel;
     private javax.swing.JButton reg_button;
     private javax.swing.JLabel reg_dropdown_label;
+    private javax.swing.JLabel reg_heading_label;
     private javax.swing.JPanel reg_selection_panel;
     private javax.swing.JTextField reg_textfield;
     private javax.swing.JPanel result_display_panel;
