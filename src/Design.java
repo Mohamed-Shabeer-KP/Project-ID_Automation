@@ -205,6 +205,7 @@ public class Design extends javax.swing.JFrame {
 
         display_panel.add(save_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 330, 290));
 
+        pdf_panel.setBackground(new java.awt.Color(255, 255, 255));
         pdf_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         pdf_panel.setPreferredSize(new java.awt.Dimension(500, 500));
         pdf_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
