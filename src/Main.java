@@ -24,7 +24,8 @@ import javax.swing.table.DefaultTableModel;
 public class Main extends javax.swing.JFrame {
 
     String path;
-     File file;
+    File file;
+    DefaultTableModel display_table_model;
 
     /**
      * Creates new form Main
@@ -43,6 +44,7 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        jPanel1 = new javax.swing.JPanel();
         selection_panel = new javax.swing.JPanel();
         welcome_label = new javax.swing.JLabel();
         select_button = new javax.swing.JButton();
@@ -66,35 +68,51 @@ public class Main extends javax.swing.JFrame {
         submit_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(100, 100));
-        setPreferredSize(new java.awt.Dimension(1700, 800));
-        setSize(new java.awt.Dimension(1700, 800));
+        setTitle("ID CARD AUTOMATED GENERATION - BETA 1.0");
+        setBackground(new java.awt.Color(204, 204, 255));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(1630, 820));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1630, 820));
 
-        selection_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 150, 221), 4, true));
+        jPanel1.setMinimumSize(new java.awt.Dimension(500, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1510, 715));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        selection_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 255), 3, true));
         selection_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        welcome_label.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        welcome_label.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         welcome_label.setText("ID CARD GENERATOR");
-        selection_panel.add(welcome_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        selection_panel.add(welcome_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 200, -1));
 
+        select_button.setBackground(new java.awt.Color(51, 153, 255));
+        select_button.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        select_button.setForeground(new java.awt.Color(255, 255, 255));
         select_button.setText("SELECT CSV FILE");
+        select_button.setToolTipText("Click here to select the excel file (.csv).");
         select_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select_buttonActionPerformed(evt);
             }
         });
-        selection_panel.add(select_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 97, -1, -1));
+        selection_panel.add(select_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 170, 50));
 
-        header_panel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createEtchedBorder()));
+        jPanel1.add(selection_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 7, 283, 190));
+
+        header_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 34, 160), 4, true));
         header_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        file_name_label.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        file_name_label.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         file_name_label.setText("WELCOME TO ID CARD GENERATOR");
         header_panel.add(file_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 4, -1, 30));
 
+        jPanel1.add(header_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 7, 1200, 39));
+
+        main_table_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(89, 192, 197), 2, true));
         main_table_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        main_table.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         main_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -108,13 +126,15 @@ public class Main extends javax.swing.JFrame {
     main_table.getTableHeader().setReorderingAllowed(false);
     main_table_scroll_panel.setViewportView(main_table);
 
-    main_table_panel.add(main_table_scroll_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 430));
+    main_table_panel.add(main_table_scroll_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 430));
 
-    reg_selection_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    jPanel1.add(main_table_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 58, -1, -1));
+
+    reg_selection_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 255), 3, true));
     reg_selection_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
     reg_textfield.setVisible(false);
-    reg_selection_panel.add(reg_textfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 162, 32));
+    reg_selection_panel.add(reg_textfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 90, 150, 32));
 
     select_dropdown.setVisible(false);
     select_dropdown.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -127,35 +147,44 @@ public class Main extends javax.swing.JFrame {
             select_dropdownActionPerformed(evt);
         }
     });
-    reg_selection_panel.add(select_dropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 162, -1));
+    reg_selection_panel.add(select_dropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 140, 150, -1));
 
     reg_button.setVisible(false);
+    reg_button.setBackground(new java.awt.Color(51, 153, 255));
+    reg_button.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+    reg_button.setForeground(new java.awt.Color(255, 255, 255));
     reg_button.setText("CONFIRM");
+    reg_button.setToolTipText("Click here to confirm the selected student.");
     reg_button.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             reg_buttonActionPerformed(evt);
         }
     });
-    reg_selection_panel.add(reg_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+    reg_selection_panel.add(reg_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 120, 40));
 
     reg_dropdown_label.setVisible(false);
+    reg_dropdown_label.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
     reg_dropdown_label.setText("Register no :");
-    reg_selection_panel.add(reg_dropdown_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 30));
+    reg_selection_panel.add(reg_dropdown_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 30));
 
     reg_heading_label.setVisible(false);
-    reg_heading_label.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+    reg_heading_label.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
     reg_heading_label.setText("SELECT  STUDENT");
-    reg_selection_panel.add(reg_heading_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+    reg_selection_panel.add(reg_heading_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 180, 20));
+
+    jPanel1.add(reg_selection_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 209, 283, 413));
 
     student_info_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-    jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+    jLabel1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
     jLabel1.setText("Selected Student Information");
-    student_info_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 292, 30));
+    student_info_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
 
+    jPanel1.add(student_info_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 494, 1210, 52));
+
+    result_display_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(89, 192, 197), 2, true));
     result_display_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-    display_tabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
     display_tabel.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {}
@@ -169,60 +198,43 @@ public class Main extends javax.swing.JFrame {
     display_tabel.getTableHeader().setReorderingAllowed(false);
     jScrollPane1.setViewportView(display_tabel);
 
-    result_display_panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 70));
+    result_display_panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 70));
+
+    jPanel1.add(result_display_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 552, -1, -1));
 
     submit_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+    submit_button.setVisible(false);
+    submit_button.setBackground(new java.awt.Color(51, 153, 255));
+    submit_button.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+    submit_button.setForeground(new java.awt.Color(255, 255, 255));
     submit_button.setText("SUBMIT");
+    submit_button.setToolTipText("Click this button for generating the ID card of the selected student.");
+    submit_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     submit_button.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             submit_buttonActionPerformed(evt);
         }
     });
-    submit_panel.add(submit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 200, 64));
+    submit_panel.add(submit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 200, 64));
+
+    jPanel1.add(submit_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 1490, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
-            .addGap(6, 6, 6)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(reg_selection_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                .addComponent(selection_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(student_info_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(result_display_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 8, Short.MAX_VALUE))
-                        .addComponent(main_table_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap())
-                .addComponent(submit_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGap(44, 44, 44)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(76, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
-            .addGap(6, 6, 6)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(selection_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(reg_selection_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(main_table_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(student_info_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(result_display_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(submit_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(40, 40, 40)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(65, Short.MAX_VALUE))
     );
 
     bindingGroup.bind();
@@ -286,28 +298,28 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_select_buttonActionPerformed
 
     private void reg_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_buttonActionPerformed
-        DefaultTableModel model1 =(DefaultTableModel)main_table.getModel();
-        DefaultTableModel model2 =(DefaultTableModel)display_tabel.getModel();
+        DefaultTableModel main_table_model =(DefaultTableModel)main_table.getModel();
+        display_table_model =(DefaultTableModel)display_tabel.getModel();
         String regno = reg_textfield.getText();
         int flag=0;
         
-        for(int i=0;i<model1.getRowCount();i++)
+        for(int i=0;i<main_table_model.getRowCount();i++)
         {
-        if(model1.getValueAt(i, 0) .equals(regno))
+        if(main_table_model.getValueAt(i, 0) .equals(regno))
          {
                 BufferedReader br;
             try {
                 br = new BufferedReader(new FileReader(file));
                 String firstLine = br.readLine().trim();
                 String[] columnsName = firstLine.split(",");
-                model2.setRowCount(0);
-                model2.setColumnIdentifiers(columnsName);
+                display_table_model.setRowCount(0);
+                display_table_model.setColumnIdentifiers(columnsName);
                 
                 Object[] tableLines = br.lines().toArray();
        
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(",");
-                model2.addRow(dataRow);
+                display_table_model.addRow(dataRow);
             
                 } catch (Exception ex) 
                 {
@@ -321,10 +333,16 @@ public class Main extends javax.swing.JFrame {
         if(flag!=1)
                 JOptionPane.showMessageDialog(null, "No match Found", " ERROR " , JOptionPane.INFORMATION_MESSAGE);
         
+        submit_button.setVisible(true);
+        
     }//GEN-LAST:event_reg_buttonActionPerformed
 
     private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        String name=String.valueOf(display_table_model.getValueAt(0, 0));
+        String roll=String.valueOf(display_table_model.getValueAt(0, 1));
+        String course=String.valueOf(display_table_model.getValueAt(0, 2));
+        new Design(name,roll,course).setVisible(true);
     }//GEN-LAST:event_submit_buttonActionPerformed
 
     private void select_dropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select_dropdownActionPerformed
@@ -372,6 +390,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel file_name_label;
     private javax.swing.JPanel header_panel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable main_table;
     private javax.swing.JPanel main_table_panel;
